@@ -1,0 +1,56 @@
+\hypertarget{message_8h}{}\section{message.\+h File Reference}
+\label{message_8h}\index{message.h@{message.h}}
+{\ttfamily \#include \char`\"{}zb\+\_\+common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}zb\+\_\+scheduler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}zb\+\_\+bufpool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}zb\+\_\+nwk.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}zb\+\_\+aps.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}zb\+\_\+zdo.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structzb__message__params__e}{zb\+\_\+message\+\_\+params\+\_\+e}}
+\begin{DoxyCompactList}\small\item\em Структура сообщения \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{message_8h_ad046d7f95646c67721aa9bb445c72ed7}\label{message_8h_ad046d7f95646c67721aa9bb445c72ed7}} 
+typedef enum \mbox{\hyperlink{message_8h_a4289262e03fa89472dc78d87e95daecc}{command\+\_\+id\+\_\+e}} \mbox{\hyperlink{message_8h_ad046d7f95646c67721aa9bb445c72ed7}{command\+\_\+id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Команды \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message_8h_a7243b6fe3f912972df68e11361f89cbc}\label{message_8h_a7243b6fe3f912972df68e11361f89cbc}} 
+typedef enum \mbox{\hyperlink{message_8h_aa8f236d9762dc3290d96b2016af31438}{color\+\_\+id\+\_\+e}} \mbox{\hyperlink{message_8h_a7243b6fe3f912972df68e11361f89cbc}{color\+\_\+id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Цвета \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message_8h_a3445c2962ef0d6c5acf523f2bb45a440}\label{message_8h_a3445c2962ef0d6c5acf523f2bb45a440}} 
+typedef struct \mbox{\hyperlink{structzb__message__params__e}{zb\+\_\+message\+\_\+params\+\_\+e}} \mbox{\hyperlink{message_8h_a3445c2962ef0d6c5acf523f2bb45a440}{zb\+\_\+message\+\_\+params\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Структура сообщения \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{message_8h_a4289262e03fa89472dc78d87e95daecc}\label{message_8h_a4289262e03fa89472dc78d87e95daecc}} 
+enum \mbox{\hyperlink{message_8h_a4289262e03fa89472dc78d87e95daecc}{command\+\_\+id\+\_\+e}} \{ {\bfseries T\+O\+G\+G\+L\+I\+NG}, 
+{\bfseries S\+E\+T\+\_\+\+C\+O\+L\+OR}, 
+{\bfseries B\+R\+I\+G\+H\+T\+N\+E\+SS}
+ \}
+\begin{DoxyCompactList}\small\item\em Команды \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message_8h_aa8f236d9762dc3290d96b2016af31438}\label{message_8h_aa8f236d9762dc3290d96b2016af31438}} 
+enum \mbox{\hyperlink{message_8h_aa8f236d9762dc3290d96b2016af31438}{color\+\_\+id\+\_\+e}} \{ {\bfseries B\+L\+UE}, 
+{\bfseries R\+ED}, 
+{\bfseries G\+R\+E\+EN}
+ \}
+\begin{DoxyCompactList}\small\item\em Цвета \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{message_8h_a7df72e5d81fb3d3d53b022db1797d570}\label{message_8h_a7df72e5d81fb3d3d53b022db1797d570}} 
+void \mbox{\hyperlink{message_8h_a7df72e5d81fb3d3d53b022db1797d570}{send\+\_\+set\+\_\+color\+\_\+command}} (zb\+\_\+uint8\+\_\+t param)
+\begin{DoxyCompactList}\small\item\em Отправить команду по установке цвета \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message_8h_aa2eb5d38d72b56794d8b903e8ef505d6}\label{message_8h_aa2eb5d38d72b56794d8b903e8ef505d6}} 
+void \mbox{\hyperlink{message_8h_aa2eb5d38d72b56794d8b903e8ef505d6}{send\+\_\+toggling\+\_\+command}} (zb\+\_\+uint8\+\_\+t param)
+\begin{DoxyCompactList}\small\item\em Отправить команду вкл/выкл \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{message_8h_aec669f9ebb0d4d6885aae7be3fa8d172}\label{message_8h_aec669f9ebb0d4d6885aae7be3fa8d172}} 
+void \mbox{\hyperlink{message_8h_aec669f9ebb0d4d6885aae7be3fa8d172}{send\+\_\+brightness\+\_\+command}} (zb\+\_\+uint8\+\_\+t param)
+\begin{DoxyCompactList}\small\item\em Отправить команду изменения яркости \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Библиотека для работа с пакетами. 

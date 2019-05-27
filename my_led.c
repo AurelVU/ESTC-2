@@ -5,6 +5,8 @@ static int pulseR;
 static int pulseG;
 static int pulseB;
 
+const int step = STEP;
+
 void SwitchOffAllA() 
 {
   GPIO_SetBits(GPIOA, GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10);
@@ -60,49 +62,49 @@ void Wait()
 
 void UpYarR() 
 {
-  if (pulseR + STEP <= 20000)
+  if (pulseR + step <= 20000)
   {
-    pulseR += STEP;
+    pulseR += step;
     TIM_SetCompare1(TIM1, pulseR);
   }
 }
 void UpYarG() 
 {
-  if (pulseG + STEP <= 20000)
+  if (pulseG + step <= 20000)
   {
-    pulseG += STEP;
+    pulseG += step;
     TIM_SetCompare2(TIM1, pulseG);
   }
 }
 void UpYarB() 
 {
-  if (pulseB + STEP <= 20000)
+  if (pulseB + step <= 20000)
   {
-    pulseB += STEP;
+    pulseB += step;
     TIM_SetCompare3(TIM1, pulseB);
   }
 }
 void DownYarR() 
 {
-  if (pulseR - STEP >= 0)
+  if (pulseR - step >= 0)
   {
-    pulseR -= STEP;
+    pulseR -= step;
     TIM_SetCompare1(TIM1, pulseR);
   }
 }
 void DownYarG() 
 {
-  if (pulseG  - STEP >= 0)
+  if (pulseG  - step >= 0)
   {
-    pulseG -= STEP;
+    pulseG -= step;
     TIM_SetCompare2(TIM1, pulseG);
   }
 }
 void DownYarB() 
 {
-  if (pulseB - STEP >= 0)
+  if (pulseB - step >= 0)
   {
-    pulseB -= STEP;
+    pulseB -= step;
     TIM_SetCompare3(TIM1, pulseB);
   }
 }

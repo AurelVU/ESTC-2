@@ -26,7 +26,7 @@ void send_brightness_command(zb_uint8_t param)
 	zb_message_params_t *ind = ZB_GET_BUF_PARAM(buf, zb_message_params_t);
 	zb_uint8_t mes[] = {BRIGHTNESS};
 	create_buf(buf, mes, 1, ind->addr);
-}
+	}
 
 void send_set_color_command(zb_uint8_t param)
 {

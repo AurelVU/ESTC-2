@@ -74,7 +74,7 @@ MAIN()
 #if !(defined KEIL || defined SDCC|| defined ZB_IAR)
   if ( argc < 3 )
   {
-    //printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+  //printf("%s <read pipe path> <write pipe path>\n", argv[0]);
     return 0;
   }
 #endif
@@ -108,23 +108,23 @@ MAIN()
 
 void EXTI0_IRQHandler(void) 
 {
-	if(EXTI_GetITStatus(EXTI_Line0)!= RESET)
-        {
-	 button0 = ZB_TRUE;
-	 ZB_SCHEDULE_ALARM_CANCEL(send, ZB_ALARM_ALL_CB);
-	 ZB_SCHEDULE_ALARM (send,0,ZB_TIME_ONE_SECOND);
-         EXTI_ClearITPendingBit(EXTI_Line0);
-        }
+  if(EXTI_GetITStatus(EXTI_Line0)!= RESET)
+  {
+    button0 = ZB_TRUE;
+    ZB_SCHEDULE_ALARM_CANCEL(send, ZB_ALARM_ALL_CB);
+    ZB_SCHEDULE_ALARM (send,0,ZB_TIME_ONE_SECOND);
+    EXTI_ClearITPendingBit(EXTI_Line0);
+  }
 }
 void EXTI1_IRQHandler(void) 
 {
-	if(EXTI_GetITStatus(EXTI_Line1)!= RESET)
-        {
-	 button1 = ZB_TRUE;
-	 ZB_SCHEDULE_ALARM_CANCEL(send, ZB_ALARM_ALL_CB);
-	 ZB_SCHEDULE_ALARM (send,0,ZB_TIME_ONE_SECOND);
-         EXTI_ClearITPendingBit(EXTI_Line1);
-        }
+  if(EXTI_GetITStatus(EXTI_Line1)!= RESET)
+  {
+      button1 = ZB_TRUE;
+      ZB_SCHEDULE_ALARM_CANCEL(send, ZB_ALARM_ALL_CB);
+      ZB_SCHEDULE_ALARM (send,0,ZB_TIME_ONE_SECOND);
+      EXTI_ClearITPendingBit(EXTI_Line1);
+  }
 }
 
 void zb_zdo_startup_complete(zb_uint8_t param) ZB_CALLBACK
@@ -142,31 +142,31 @@ void zb_zdo_startup_complete(zb_uint8_t param) ZB_CALLBACK
 }
 static void send(zb_uint8_t param) ZB_CALLBACK 
 {
-	if(button0 && button1)
-	{
-		ZB_SCHEDULE_CALLBACK(set_color_command,0);
-	}
-	else 	
-	{
-		if(button0)
-		{
-		  ZB_SCHEDULE_CALLBACK(set_toggling_command,0);
-		}
-           	else
-		{
-		  ZB_SCHEDULE_CALLBACK(set_brightness_command,0);
-		}
-	}
-	button0 = ZB_FALSE;
-	button1 = ZB_FALSE;
+  if(button0 && button1)
+  {
+    ZB_SCHEDULE_CALLBACK(set_color_command,0);
+  }
+  else 	
+  {
+    if(button0)
+    {
+      ZB_SCHEDULE_CALLBACK(set_toggling_command,0);
+    }
+    else
+    {
+      ZB_SCHEDULE_CALLBACK(set_brightness_command,0);
+    }
+  }
+  button0 = ZB_FALSE;
+  button1 = ZB_FALSE;
 }
 
 static void set_toggling_command(zb_uint8_t param) ZB_CALLBACK 
 {
   if (param==0)
   {
-	ZB_GET_OUT_BUF_DELAYED(set_toggling_command);
-        return;
+    ZB_GET_OUT_BUF_DELAYED(set_toggling_command);
+    return;
   }
   zb_buf_t *buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
   zb_message_params_t *ind = ZB_GET_BUF_PARAM(buf, zb_message_params_t);
@@ -178,8 +178,8 @@ static void set_brightness_command(zb_uint8_t param)
 {
   if (param==0)
   {
-	ZB_GET_OUT_BUF_DELAYED(set_brightness_command);
-        return;
+    ZB_GET_OUT_BUF_DELAYED(set_brightness_command);
+    return;
   }
   zb_buf_t *buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);
   zb_message_params_t *ind = ZB_GET_BUF_PARAM(buf, zb_message_params_t);
@@ -191,8 +191,8 @@ static void set_color_command(zb_uint8_t param) ZB_CALLBACK
 {
   if (param==0)
   {
-	ZB_GET_OUT_BUF_DELAYED(set_color_command);
-        return;
+    ZB_GET_OUT_BUF_DELAYED(set_color_command);
+    return;
   }
   static zb_uint8_t color = 0;
   zb_buf_t *buf = (zb_buf_t *)ZB_BUF_FROM_REF(param);

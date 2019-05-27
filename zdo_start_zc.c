@@ -79,15 +79,15 @@ MAIN()
 {
   ARGV_UNUSED;
   InitA();
-    InitTim1();
-    InitCompForTim1();
+  InitTim1();
+  InitCompForTim1();
 
-    TIM_Cmd(TIM1, ENABLE);
-    TIM_CtrlPWMOutputs(TIM1, ENABLE);
-#if !(defined KEIL || defined SDCC || defined ZB_IAR)
+  TIM_Cmd(TIM1, ENABLE);
+  TIM_CtrlPWMOutputs(TIM1, ENABLE);
+  #if !(defined KEIL || defined SDCC || defined ZB_IAR)
   if ( argc < 3 )
   {
-    //printf("%s <read pipe path> <write pipe path>\n", argv[0]);
+  //printf("%s <read pipe path> <write pipe path>\n", argv[0]);
     return 0;
   }
 #endif
@@ -152,24 +152,27 @@ void receive_task(zb_uint8_t param) ZB_CALLBACK
   zb_uint8_t *ptr;
   zb_buf_t *asdu = (zb_buf_t *)ZB_BUF_FROM_REF(param);
   ZB_APS_HDR_CUT_P(asdu, ptr);
-  switch(ptr[0])
+  if ((int)ZB_BUF_LEN(asdu) > 0)
   {
-     case TOGGLING: 
-     {
-	set_toggling_command();
-	break;
-     }
-     case BRIGHTNESS: 
-     {
-	set_brightness_command();
-	TRACE_MSG(TRACE_APS2, "Change brightness", (FMT__0));
-	break;
-     }
-     case SET_COLOR: 
-     {
-	set_color_command(ptr[1]);
-	break;
-     }
+    switch(ptr[0])
+    {
+      case TOGGLING: 
+      {
+        set_toggling_command();
+        break;
+      }
+      case BRIGHTNESS: 
+      {
+        set_brightness_command();
+        TRACE_MSG(TRACE_APS2, "Change brightness", (FMT__0));
+        break;
+      }
+      case SET_COLOR: 
+      {
+        set_color_command(ptr[1]);
+        break;
+      }
+    }
   }
   zb_free_buf(asdu);
 }
@@ -178,7 +181,7 @@ static void set_brightness_command(void)
   light += 0.2;
   if(light > 1)
   {
-	light = 0;
+    light = 0;
   }
   setColorRGB((int)(current_red*light), (int)(current_green*light), (int)(current_blue*light));
 }
@@ -186,27 +189,27 @@ static void set_color_command(zb_uint8_t color)
 {
   switch(color)
   {
-     case BLUE: 
-     {
-	current_red = 0;
-	current_green = 0;
-	current_blue = 0xFF;
-	break;
-     }
-     case GREEN: 
-     {
-	current_red = 0;
-	current_green = 0xFF;
-	current_blue = 0;
-	break;
-     }
-     case RED: 
-     {
-	current_red = 0xFF;
-	current_green = 0;
-	current_blue = 0;
-	break;
-     }
+    case BLUE: 
+    {
+      current_red = 0;
+      current_green = 0;
+      current_blue = 0xFF;
+      break;
+    }
+    case GREEN: 
+    {
+      current_red = 0;
+      current_green = 0xFF;
+      current_blue = 0;
+      break;
+    }
+    case RED: 
+    {
+      current_red = 0xFF;
+      current_green = 0;
+      current_blue = 0;
+      break;
+    }
   }
   setColorRGB((int)(current_red*light) , (int)(current_green*light) , (int)(current_blue*light));
   TRACE_MSG(TRACE_APS2, "Toggling  the color (%d)", (FMT__D, param));
@@ -217,15 +220,15 @@ static void set_toggling_command(void)
   static zb_bool_t condition = ZB_FALSE;
   if (condition)
   {
-	setColorRGB((int)(current_red*light), (int)(current_green*light), (int)(current_blue*light));
-	TRACE_MSG(TRACE_APS2, "Enabling a light bulb", (FMT__0));  
+    setColorRGB((int)(current_red*light), (int)(current_green*light), (int)(current_blue*light));
+    TRACE_MSG(TRACE_APS2, "Enabling a light bulb", (FMT__0));  
   }
   else 
   {
-	setColorRGB(0, 0, 0);
-	TRACE_MSG(TRACE_APS2, "Disabling a light bulb", (FMT__0));
+    setColorRGB(0, 0, 0);
+    TRACE_MSG(TRACE_APS2, "Disabling a light bulb", (FMT__0));
   }
- condition = !condition;
+  condition = !condition;
 }
 
 

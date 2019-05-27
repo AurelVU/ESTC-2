@@ -34,8 +34,6 @@ void SwitchOffA(uint16_t Pin);
 void SwitchOffD(uint16_t Pin);
 /// \brief Включить лампочку на линии D.
 void SwitchOnD(uint16_t Pin);
-/// \brief Прерывание таймера Tim2.
-void TIM2_IRQHandler(void);
 /// \brief Ожидание.
 void Wait(void);
 /// \brief Поднять яркость красного светодиода.
@@ -50,11 +48,6 @@ void DownYarR(void);
 void DownYarG(void);
 /// \brief Убавить яркость синего светодиода.
 void DownYarB(void);
-/// \brief Прерывание для первой кнопки.
-
-int IsSetButton(uint16_t Pin);
-/// \brief Инициализация таймера Tim2.
-void InitTim2(void);
 /// \brief Инициализация таймера Tim1.
 void InitTim1(void);
 /// \brief Инициализация линии D.
@@ -67,14 +60,6 @@ void InitA(void);
 void InitE(void);
 /// \brief Инициализация прерываний по таймеру Tim2.
 void InitPrTim2(void);
-/// \brief Инициализация прерываний для первой кнопки.
-void InitPrButt0(void);
-/// \brief Инициализация прерываний для второй кнопки.
-void InitPrButt1(void);
-/// \brief Прерывания для первой кнопки.
-void ConfPr0(void);
-/// \brief Прерывания для второй кнопки.
-void ConfPr1(void);
 /// \brief Инициализация компеира для таймера Tim1.
 void InitCompForTim1(void);
 /// \brief Установка цвета в формате RGB.
